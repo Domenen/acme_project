@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% for birthday in birthdays %}
+  {% for birthday in page_obj %}
     <div class="row">
       <div class="col-2">
         {% if birthday.image %}
@@ -12,6 +12,7 @@
       <div class="col-10"> <!-- Обернём каждую запись в тег div -->
         <div> <!-- Текст обернём в отдельный вложенный div -->
           {{ birthday.first_name }} {{ birthday.last_name }} - {{ birthday.birthday }}
+          <a href="{% url 'birthday:detail' birthday.id %}">Сколько до дня рождения?</a>
         </div>
         <div>
           <a href="{% url 'birthday:edit' birthday.id %}">Изменить запись</a>
@@ -23,4 +24,5 @@
       {% endif %}
     </div>
   {% endfor %}
+  {% include "includes/paginator.html" %}
 {% endblock %}

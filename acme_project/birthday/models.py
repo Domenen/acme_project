@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from .validators import real_age
 
@@ -14,8 +15,12 @@ class Birthday(models.Model):
     image = models.ImageField('Фото', upload_to='birthdays_images', blank=True)
 
     constraints = (
-            models.UniqueConstraint(
-                fields=('first_name', 'last_name', 'birthday'),
-                name='Unique person constraint',
-            ),
-        )
+        models.UniqueConstraint(
+            fields=('first_name', 'last_name', 'birthday'),
+            name='Unique person constraint',
+        ),
+    )
+
+    def get_absolute_url(self):
+        # С помощью функции reverse() возвращаем URL объекта.
+        return reverse('birthday:detail', kwargs={'pk': self.pk})
