@@ -131,3 +131,5 @@ dmypy.json
 .idea
 
 /acme_project/media
+
+/acme_project/sent_emails

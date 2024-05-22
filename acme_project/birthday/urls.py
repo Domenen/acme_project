@@ -1,4 +1,6 @@
-from django.urls import path
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView
+from django.urls import include, path, reverse_lazy
 
 from . import views
 
@@ -11,5 +13,4 @@ urlpatterns = [
     path('<int:pk>/', views.BirthdayDetailView.as_view(), name='detail'),
     path('<int:pk>/edit/', views.BirthdayUpdateView.as_view(), name='edit'),
     path('<int:pk>/delete/', views.BirthdayDeleteView.as_view(), name='delete'),
-
 ]
